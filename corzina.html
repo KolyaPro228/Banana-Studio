@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>Корзина</title>
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
+
+    <link rel="stylesheet" href="assets/css/templatemo-hexashop.css">
+
+    <link rel="stylesheet" href="assets/css/owl-carousel.css">
+
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+
+    <link rel="stylesheet" href="assets/css/corzina.css">
+
+    </head>
+    
+    <body>
+    
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+    
+    
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <nav class="main-nav">
+                <!-- ***** Logo Start ***** -->
+                <a href="index.html" class="logo">
+                  <img src="assets/images/logo.png" />
+                </a>
+                <!-- ***** Logo End ***** -->
+                <!-- ***** Menu Start ***** -->
+                <ul class="nav">
+                  <li class="scroll-to-section">
+                    <a href="index.html" class="active">Главная</a>
+                  </li>
+                  </li>
+                  <li><a href="corzina.html">Корзина</a></li>
+                </ul>
+                <a class="menu-trigger">
+                  <span>Menu</span>
+                </a>
+                <!-- ***** Menu End ***** -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- ***** Header Area End ***** -->
+
+          <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading about-page-heading" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content">
+                        <h2>Оформите заказ</h2>
+                        <span>А мы вам его привезем</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+
+    <!-- ***** Corzina Area Starts ***** -->
+    <body>
+        <div class="cart">
+            <h1>Корзина</h1>
+            <div class="cart-item">
+                <h2>
+                    <img src="assets/images/men-01.jpg" alt="iPhone 14">
+                    Apple iPhone 16
+                </h2>
+                <p class="price">Цена: <span>84,999</span> руб.</p>
+                <label for="color1">Цвет:</label>
+                <select id="color1">
+                    <option value="black">Черный</option>
+                    <option value="white">Белый</option>
+                    <option value="blue">Синий</option>
+                </select>
+                <label for="size1">Размер:</label>
+                <select id="size1" onchange="updatePrice(84.999, this)">
+                    <option value="128gb">128 ГБ</option>
+                    <option value="256gb">256 ГБ</option>
+                    <option value="512gb">512 ГБ</option>
+                </select>
+                <button onclick="removeItem(this)">Удалить</button>
+            </div>
+    
+            <div class="cart-item">
+                <h2>
+                    <img src="assets/images/women-02.jpg" alt="iPhone 13">
+                    Apple AirPods 4
+                </h2>
+                <p class="price">Цена: <span>14,999</span> руб.</p>
+                <label for="size2">Шумоподавление:</label>
+                <select id="size2" onchange="updatePrice(14.999, this)">
+                    <option value="no">Нет</option>
+                    <option value="yes">Активное</option>
+                </select>
+                <button onclick="removeItem(this)">Удалить</button>
+            </div>
+    
+            <div class="cart-item">
+                <h2>
+                    <img src="assets/images/kid-02.jpg" alt="iPhone SE">
+                    Apple Watch Series 10
+                </h2>
+                <p class="price">Цена: <span>44,890</span> руб.</p>
+    
+    
+                <label for="color3">Цвет:</label>
+                <select id="color3">
+                    <option value="gray">Серый</option>
+                    <option value="white">Бежевый</option>
+                    <option value="pink">Розовый</option>
+                </select>
+                <label for="size3">Размер:</label>
+                <select id="size3" onchange="updatePrice(44890, this)">
+                    <option value="42">42</option>
+                    <option value="46">46</option>
+                </select>
+                <button onclick="removeItem(this)">Удалить</button>
+            </div>
+
+            <div class="total-price">
+                Итоговая цена: <span id="total">114,888</span> руб.
+            </div>
+            
+            <h2>Оформить заказ</h2>
+            <label for="name">Имя:</label>
+            <input type="text" id="name" placeholder="Ваше имя">
+            <label for="address">Адрес доставки:</label>
+            <input type="text" id="address" placeholder="Ваш адрес">
+            <button class="order-button">Оформить заказ</button>
+        </div>
+    
+        <script>
+            function updatePrice(basePrice, select) {
+                const priceElement = select.closest('.cart-item').querySelector('.price span');
+                const selectedOption = select.options[select.selectedIndex].value;
+                let newPrice = basePrice;
+    
+                switch (selectedOption) {
+                    case '256gb':
+                        newPrice = 102.999;
+                        break;
+                    case '512gb':
+                        newPrice = 115.999;
+                        break;
+                    case '128gb':
+                        newPrice = 84.999;
+                        break;
+                    case '64gb':
+                        newPrice = 40000;
+                        break;
+                    case 'yes':
+                        newPrice = 18.999;
+                        break;
+                    case 'no':
+                        newPrice = 14.999;
+                        break;
+                    case '42':
+                        newPrice = 44.890;
+                        break;
+                    case '46':
+                        newPrice = 46.999;
+                        break;
+                }
+    
+                priceElement.textContent = newPrice.toLocaleString();
+            }
+    
+            function removeItem(button) {
+                button.closest('.cart-item').remove();
+            }
+
+            > ChatGPT + Midjourney:
+Чтобы добавить итоговую цену в вашу корзину, необходимо вычислить общую стоимость всех товаров и обновить интерфейс. Вот полная версия вашего кода с добавлением итоговой цены:
+
+<body>
+    <div class="cart">
+        <h1>Корзина</h1>
+        
+        <div class="cart-item" data-price="84999">
+            <h2>
+                <img src="assets/images/men-01.jpg" alt="iPhone 16">
+                Apple iPhone 16
+            </h2>
+            <p class="price">Цена: <span>84,999</span> руб.</p>
+            <label for="color1">Цвет:</label>
+            <select id="color1">
+                <option value="black">Черный</option>
+                <option value="white">Белый</option>
+                <option value="blue">Синий</option>
+            </select>
+            <label for="size1">Размер:</label>
+            <select id="size1" onchange="updatePrice(84999, this)">
+                <option value="128gb">128 ГБ</option>
+                <option value="256gb">256 ГБ</option>
+                <option value="512gb">512 ГБ</option>
+            </select>
+            <button onclick="removeItem(this)">Удалить</button>
+        </div>
+
+        <div class="cart-item" data-price="14999">
+            <h2>
+                <img src="assets/images/women-02.jpg" alt="AirPods 4">
+                Apple AirPods 4
+            </h2>
+            <p class="price">Цена: <span>14,999</span> руб.</p>
+            <label for="size2">Шумоподавление:</label>
+            <select id="size2" onchange="updatePrice(14999, this)">
+                <option value="no">Нет</option>
+                <option value="yes">Активное</option>
+            </select>
+            <button onclick="removeItem(this)">Удалить</button>
+        </div>
+
+        <div class="cart-item" data-price="44890">
+            <h2>
+                <img src="assets/images/kid-02.jpg" alt="Apple Watch">
+                Apple Watch Series 10
+            </h2>
+            <p class="price">Цена: <span>44,890</span> руб.</p>
+            <label for="color3">Цвет:</label>
+            <select id="color3">
+                <option value="gray">Серый</option>
+                <option value="white">Бежевый</option>
+                <option value="pink">Розовый</option>
+            </select>
+            <label for="size3">Размер:</label>
+            <select id="size3" onchange="updatePrice(44890, this)">
+                <option value="42">42</option>
+                <option value="46">46</option>
+            </select>
+            <button onclick="removeItem(this)">Удалить</button>
+        </div>
+        
+        <div class="total-price">
+            Итоговая цена: <span id="total">114,888</span> руб.
+        </div>
+        
+        <h2>Оформить заказ</h2>
+        <label for="name">Имя:</label>
+        <input type="text" id="name" placeholder="Ваше имя">
+        <label for="address">Адрес доставки:</label>
+        <input type="text" id="address" placeholder="Ваш адрес">
+        <button class="order-button">Оформить заказ</button>
+    </div>
+
+    <script>
+        function updatePrice(basePrice, select) {
+            const priceElement = select.closest('.cart-item').querySelector('.price span');
+            const selectedOption = select.options[select.selectedIndex].value;
+
+            let newPrice = basePrice;
+
+            switch (selectedOption) {
+                case '256gb':
+                    newPrice = 102999;
+                    break;
+                case '512gb':
+                    newPrice = 115999;
+                    break;
+                case '128gb':
+                    newPrice = 84999;
+                    break;
+                case 'yes':
+                    newPrice = 18999;
+                    break;
+                case 'no':
+                    newPrice = 14999;
+                    break;
+                case '42':
+                    newPrice = 44890;
+                    break;
+            }
+
+            priceElement.innerText = newPrice.toLocaleString('ru-RU');
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+
+            const cartItems = document.querySelectorAll('.cart-item');
+            let total = 0;
+
+            cartItems.forEach(item => {
+                const price = parseInt(item.querySelector('.price span').innerText.replace(/\s/g, ''));
+                total += price;
+            });
+        }
+
+        </script>
+        
+    </body>
+
+    <!-- ***** Corzina Area Ends ***** -->
+
+    <!-- ***** Subscribe Area Starts ***** -->
+    <div class="subscribe">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="section-heading">
+                <h2>Подпишитесь на нашу рассылку и получите скидку до 30%</h2>
+                <span>Интернет магазин Banana Studio</span>
+              </div>
+              <form id="subscribe" action="" method="get">
+                <div class="row">
+                  <div class="col-lg-5">
+                    <fieldset>
+                      <input
+                        name="name"
+                        type="text"
+                        id="name"
+                        placeholder="Ваше имя"
+                        required=""
+                      />
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-5">
+                    <fieldset>
+                      <input
+                        name="email"
+                        type="text"
+                        id="email"
+                        pattern="[^ @]*@[^ @]*"
+                        placeholder="Ваш Email адрес"
+                        required=""
+                      />
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-2">
+                    <fieldset>
+                      <button
+                        type="submit"
+                        id="form-submit"
+                        class="main-dark-button"
+                      >
+                        <i class="fa fa-paper-plane"></i>
+                      </button>
+                    </fieldset>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                  <div class="col-6">
+                    <ul>
+                      <li>
+                        Наша локация:<br /><span
+                          >г. Чебоксары, ул. Декабристов, 17, 1 этаж</span
+                        >
+                      </li>
+                      <li>Телефон:<br /><span>52-52-52</span></li>
+                      <li>
+                        Наш офис:<br /><span
+                          >г. Чебоксары, ул. Декабристов, 17, 2 этаж</span
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-6">
+                    <ul>
+                      <li>Время работы:<br /><span>07:30 - 22:00</span></li>
+                      <li>Email:<br /><span>BananaStudio@gmail.com</span></li>
+                      <li>
+                        Social Media:<br /><span
+                          ><a href="#">Telegramm</a>, <a href="#">Instagram</a>,
+                          <a href="#">ВКонтакте</a>, <a href="#">YouTube</a></span
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <!-- ***** Subscribe Area Ends ***** -->
+
+ <!-- ***** Footer Start ***** -->
+ <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="first-item">
+            <div class="logo">
+              <img
+                src="assets/images/white-logo.png"
+                alt="hexashop ecommerce templatemo"
+              />
+            </div>
+            <ul>
+              <li>
+                <a href="#"
+                  >г. Чебоксары, ул. Декабристов, 17, 1 этаж</a
+                >
+              </li>
+              <li><a href="#">BananaStudio@gmail.com</a></li>
+              <li><a href="#">52-52-52</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <h4>Каталог</h4>
+          <ul>
+            <li><a href="#">iPhone</a></li>
+            <li><a href="#">AirPods</a></li>
+            <li><a href="#">Apple Watch</a></li>
+            <li><a href="#">Аксессуары</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3">
+          <h4>Ссылки</h4>
+          <ul>
+            <li><a href="#">Главная</a></li>
+            <li><a href="#">О нас</a></li>
+            <li><a href="#">Помощь</a></li>
+            <li><a href="#">Контакты</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3">
+          <h4>Покупателям</h4>
+          <ul>
+            <li><a href="#">Помощь</a></li>
+            <li><a href="#">Оплата и доствка</a></li>
+            <li><a href="#">Гарантия</a></li>
+            <li><a href="#">Политика конфиденциальности</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-12">
+          <div class="under-footer">
+            <p>Copyright © 2025 Banana Studio Все права защищены.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+    
+
+    <!-- jQuery -->
+    <script src="assets/js/jquery-2.1.0.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- Plugins -->
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/accordions.js"></script>
+    <script src="assets/js/datepicker.js"></script>
+    <script src="assets/js/scrollreveal.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/imgfix.min.js"></script> 
+    <script src="assets/js/slick.js"></script> 
+    <script src="assets/js/lightbox.js"></script> 
+    <script src="assets/js/isotope.js"></script> 
+    
+    <!-- Global Init -->
+    <script src="assets/js/custom.js"></script>
+
+    <script>
+
+        $(function() {
+            var selectedClass = "";
+            $("p").click(function(){
+            selectedClass = $(this).attr("data-rel");
+            $("#portfolio").fadeTo(50, 0.1);
+                $("#portfolio div").not("."+selectedClass).fadeOut();
+            setTimeout(function() {
+              $("."+selectedClass).fadeIn();
+              $("#portfolio").fadeTo(50, 1);
+            }, 500);
+                
+            });
+        });
+
+    </script>
+
+  </body>
+
+</html>
